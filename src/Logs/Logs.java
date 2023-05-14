@@ -24,6 +24,7 @@ public class Logs {
             File fileOfLog = new File(logFile);
 
             if (!fileOfLog.exists()) {
+                fileOfLog.getParentFile().mkdirs();
                 fileOfLog.createNewFile();
             }
 

@@ -1,0 +1,9 @@
+[2023-05-14 16:01:00] Exceptions.ExitException: Exiting Program
+	at Menu.Menu.menu(Menu.java:30)
+	at Main.main(Main.java:16)
+[2023-05-14 17:01:04] Exceptions.ExitException: Exiting Program
+	at Menu.Menu.menu(Menu.java:30)
+	at Main.main(Main.java:67)
+[2023-05-14 17:38:08] Exceptions.ExitException: Exiting Program
+	at Menu.Menu.menu(Menu.java:31)
+	at Main.main(Main.java:67)

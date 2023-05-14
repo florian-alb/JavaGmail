@@ -19,4 +19,31 @@ public class ReceivedEmail extends Email{
         this.content.setSender(sender);
         this.content.setReceivers(receivers);
     }
+
+    @Override
+    public void addToInbox(MailBox mailBox){
+        mailBox.getInbox().add(this);
+    }
+
+    @Override
+    public void showEmail(){
+        this.isRead = true;
+        System.out.println("Sender: " + this.content.getSender());
+        System.out.print("Receivers: ");
+        this.showReceivers();
+        System.out.println("Received date: " + this.receviedDate);
+        System.out.println(
+                "Email Subject: " + this.content.getSubject() + "\n" +
+                        "Email Content: " + this.content.getMessage() + "\n"
+        );
+    }
+
+    public String quickShow(){
+        return ("\tSender: " + this.content.getSender() + "\n" +
+                "\tObject: " + this.content.getSubject() + "\n" +
+                "\tDate: " + this.receviedDate + "\n" +
+                "\tIs Read: " + this.isRead + "\n"
+        );
+    }
+
 }

@@ -1,15 +1,17 @@
 package mailBox;
 
+import Menu.Menu;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MailBox {
-    private String mailAddress;
-    private String password;
+    private final String mailAddress;
+    private final String password;
 
     private List<Email> inbox;
     private List<Email> drafts;
-    public List<Email> sentEmails;
+    private List<Email> sentEmails;
 
     public MailBox(String mailAddress, String password) {
         this.mailAddress = mailAddress;
@@ -40,16 +42,32 @@ public class MailBox {
         return sentEmails;
     }
 
-    public void createMail(CreatedEmail email){
+    public void createMail(){
+        Email newEmail = new CreatedEmail(this);
+        Menu.editEmail(newEmail, this);
+        //this.drafts.add(newEmail);
+    }
+
+    public void createMail(String sender){
+        Email newEmail = new CreatedEmail(this);
+        newEmail.updateReceivers(List.of(sender));
+        Menu.editEmail(newEmail, this);
+    }
+
+    public void saveToDrafts(Email email){
         this.drafts.add(email);
     }
 
     void send(Email email){
-        //this.drafts.remove(email);
+        this.drafts.remove(email);
         this.sentEmails.add(email);
     }
 
     public void showInbox(){
+        if (inbox.isEmpty()){
+            System.out.println("No messages");
+            return;
+        }
         for (Email email : inbox) {
             email.showEmail();
         }

@@ -4,7 +4,7 @@ import Exceptions.ContentException;
 
 import java.util.List;
 
-public class Email {
+public abstract class Email {
     protected Content content;
     protected Boolean favorite = false;
     protected Boolean important = false;
@@ -13,6 +13,10 @@ public class Email {
         this.content = new Content();
         this.content.setMessage("Empty message");
         this.content.setSubject("Default subject");
+    }
+
+    public String getSender(){
+        return this.content.getSender();
     }
 
     public void updateMessage(String message){};
@@ -55,9 +59,16 @@ public class Email {
         );
     }
 
-    public void updateReceivers(List<String> strings) {}
+    public void updateReceivers(List<String> strings){};
 
-    public void updateSubject(String subject) {}
+    public void updateSubject(String subject){};
 
-    public void sendEmail(MailBox mailbox) throws ContentException {}
+    public void addToInbox(MailBox mailBox){};
+
+    public String quickShow(){
+        return null;
+    };
+    public void sendEmail(MailBox mailbox) throws ContentException {
+        System.out.println(this.getClass());
+    }
 }
