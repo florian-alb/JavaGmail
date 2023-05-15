@@ -22,7 +22,6 @@ public interface EmailSender {
         properties.put("mail.smtp.port", "587"); // SMTP port
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
-
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {

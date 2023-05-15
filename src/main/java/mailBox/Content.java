@@ -16,7 +16,7 @@ class Content {
         this.sender = sender;
         this.subject = subject;
         this.message = message;
-    }
+        }
 
     // getters
     public List<String> getReceivers() {

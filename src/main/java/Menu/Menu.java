@@ -5,7 +5,6 @@ import Exceptions.ExitException;
 import Logs.Logs;
 import mailBox.Email;
 import mailBox.MailBox;
-import mailBox.ReceivedEmail;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -26,7 +25,7 @@ public class Menu {
         switch (choice) {
             case 1 -> showInbox(mailBox);
             case 2 -> showDrafts(mailBox);
-            case 3 -> mailBox.createMail();
+            case 3 -> mailBox.createEmail();
             case 0 -> {
                 throw new ExitException("Exiting Program");
             }
@@ -105,7 +104,7 @@ public class Menu {
         System.out.print("Type 1 to reply to this mail and 2 to exit: ");
         int choice = readInteger(new Scanner(System.in));
         switch (choice){
-            case 1 -> mailBox.createMail(email.getSender());
+            case 1 -> mailBox.createEmail(email.getSender());
             case 2 -> System.out.println("Exiting...");
             default -> System.out.println("Invalid input");
         }

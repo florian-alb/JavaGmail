@@ -12,12 +12,6 @@ import java.util.Date;
 public class Logs {
     private static final String logFile = new File("").getAbsolutePath() + "/src/Logs/logs.txt";
 
-
-    public static void readLogs() throws IOException {
-        final FileReader fileReader = new FileReader(logFile);
-        final BufferedReader bufferedReader = new BufferedReader(fileReader);
-    }
-
     public static void writeLog(Exception exception) {
         try {
 

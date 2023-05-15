@@ -42,13 +42,13 @@ public class MailBox {
         return sentEmails;
     }
 
-    public void createMail(){
+    public void createEmail(){
         Email newEmail = new CreatedEmail(this);
         Menu.editEmail(newEmail, this);
         //this.drafts.add(newEmail);
     }
 
-    public void createMail(String sender){
+    public void createEmail(String sender){
         Email newEmail = new CreatedEmail(this);
         newEmail.updateReceivers(List.of(sender));
         Menu.editEmail(newEmail, this);

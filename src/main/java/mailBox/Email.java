@@ -59,7 +59,7 @@ public abstract class Email {
         );
     }
 
-    public void updateReceivers(List<String> strings){};
+    public void updateReceivers(List<String> emailAddresses){};
 
     public void updateSubject(String subject){};
 

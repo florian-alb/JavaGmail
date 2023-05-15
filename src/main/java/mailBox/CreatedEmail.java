@@ -32,8 +32,8 @@ public class CreatedEmail extends Email {
     }
 
     @Override
-    public void updateReceivers(List<String> receivers){
-        this.content.setReceivers(receivers);
+    public void updateReceivers(List<String> emailAddresses){
+        this.content.setReceivers(emailAddresses);
         this.lastUpdateDate = new Date();
     }
 
