@@ -64,13 +64,13 @@ public class Menu {
         if (mailBox.getDrafts().isEmpty()) {
             System.out.println("\nNo drafts found.\n");
         } else {
+            int index;
+            do {
             System.out.println("----- Drafts -----");
             for (int i = 0; i < mailBox.getDrafts().size(); i++) {
                 System.out.println((i + 1) + ". " + mailBox.getDrafts().get(i).quickShow());
             }
             System.out.println("-------------------");
-            int index;
-            do {
                 System.out.print("Enter the index of the draft to edit or send or type '0' to exit: ");
                 index = readInteger(new Scanner(System.in));
                 if (index >= 1 && index <= mailBox.getDrafts().size()) {
