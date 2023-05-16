@@ -71,28 +71,6 @@ public class MailBox {
         Logs.writeLog("Email Sent", email, mailBox);
     }
 
-    public void showInbox(){
-        if (inbox.isEmpty()){
-            System.out.println("No messages");
-            return;
-        }
-        for (Email email : inbox) {
-            email.showEmail();
-        }
-    }
-
-    public void showDrafts(){
-        for (Email email : drafts) {
-            email.showEmail();
-        }
-    }
-
-    public void showSentEmails(){
-        for (Email email : sentEmails) {
-            email.showEmail();
-        }
-    }
-
     public List<Email> getFavorites() {
         return favorites;
     }
