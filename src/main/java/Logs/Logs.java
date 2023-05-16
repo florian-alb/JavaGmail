@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Logs {
-    private static final String logFile = new File("").getAbsolutePath() + "/src/Logs/logs.txt";
+    private static final String logFile = new File("").getAbsolutePath() + "/src/main/java/Logs/logs.txt";
 
     public static void writeLog(Exception exception) {
         try {
@@ -28,7 +28,7 @@ public class Logs {
         try {
 
             PrintWriter printWriter = printLogFormat();
-            printWriter.println(message + email + mailBox);
+            printWriter.println(message + " - " + email + " - " + mailBox);
             printWriter.close();
 
         } catch (IOException e) {
