@@ -78,8 +78,6 @@ public class Menu {
                     editEmail(email, mailBox);
                 } else if (index != 0) {
                     System.out.println("Invalid index.");
-                } else if (index == 0) {
-                    System.out.println("Exiting...");
                 }
             } while (index != 0);
         }
