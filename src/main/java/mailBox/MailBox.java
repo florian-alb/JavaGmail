@@ -1,5 +1,6 @@
 package mailBox;
 
+import Logs.Logs;
 import Menu.Menu;
 
 import java.util.ArrayList;
@@ -53,8 +54,9 @@ public class MailBox {
         //this.drafts.add(newEmail);
     }
 
-    public void createEmail(String sender){
+    public void createEmail(String sender, MailBox mailBox){
         Email newEmail = new CreatedEmail(this);
+        Logs.writeLog("New email created", newEmail, mailBox);
         newEmail.updateReceivers(List.of(sender));
         Menu.editEmail(newEmail, this);
     }
@@ -63,9 +65,10 @@ public class MailBox {
         this.drafts.add(email);
     }
 
-    void send(Email email){
+    void send(Email email, MailBox mailBox){
         this.drafts.remove(email);
         this.sentEmails.add(email);
+        Logs.writeLog("Email Sent", email, mailBox);
     }
 
     public void showInbox(){

@@ -119,7 +119,7 @@ public class Menu {
 
             choice = readInteger(new Scanner(System.in));
             switch (choice) {
-                case 1 -> mailBox.createEmail(email.getSender());
+                case 1 -> mailBox.createEmail(email.getSender(), mailBox);
                 case 2 -> email.addToFavorite(mailBox);
                 case 3 -> email.markAsImportant(mailBox);
                 case 4 -> System.out.println("Exiting...");
@@ -144,6 +144,7 @@ public class Menu {
 
                     // Update the email's object
                     email.updateSubject(newSubject);
+                    Logs.writeLog("Subject updated", email, mailbox);
                     System.out.println("Subject updated: " + newSubject);
                 }
                 case 2 -> {
@@ -151,6 +152,7 @@ public class Menu {
 
                     // Update the email's content
                     email.updateMessage(newContent);
+                    Logs.writeLog("Content updated", email, mailbox);
                     System.out.println("Content updated: " + newContent);
                 }
                 case 3 -> {
@@ -159,6 +161,7 @@ public class Menu {
 
                     // Update the email's receivers
                     email.updateReceivers(receivers);
+                    Logs.writeLog("Receivers updated",email, mailbox);
                     System.out.println("Receivers updated: " + newReceivers);
                 }
                 case 4 -> {
@@ -172,6 +175,7 @@ public class Menu {
                 }
                 case 0 -> {
                     System.out.println("Draft Saved");
+                    Logs.writeLog("Draft Saved", email, mailbox);
 
                     if (!mailbox.getDrafts().contains(email)) {
                         mailbox.saveToDrafts(email);

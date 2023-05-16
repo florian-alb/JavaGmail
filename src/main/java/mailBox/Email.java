@@ -1,6 +1,7 @@
 package mailBox;
 
 import Exceptions.ContentException;
+import Logs.Logs;
 
 import java.util.List;
 
@@ -33,8 +34,10 @@ public class Email {
         this.favorite = !this.favorite;
         if (this.favorite){
             mailBox.getFavorites().add(this);
+            Logs.writeLog("Add to favorite", this, mailBox);
         } else {
             mailBox.getFavorites().remove(this);
+            Logs.writeLog("Remove from favorite", this, mailBox);
         }
     }
 
@@ -42,8 +45,10 @@ public class Email {
         this.important = !this.important;
         if (this.important){
             mailBox.getImportant().add(this);
+            Logs.writeLog("Marked as important", this, mailBox);
         } else {
             mailBox.getImportant().remove(this);
+            Logs.writeLog("Unmarked as important", this, mailBox);
         }
     }
 

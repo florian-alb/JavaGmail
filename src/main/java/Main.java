@@ -54,6 +54,8 @@ public class Main {
                 new Date()
         );
 
+        email1.addToFavorite(mailbox);
+        email1.markAsImportant(mailbox);
         email1.addToInbox(mailbox);
         email2.addToInbox(mailbox);
         email3.addToInbox(mailbox);

@@ -50,7 +50,7 @@ public class CreatedEmail extends Email {
             }
             EmailSender.sendEmail(mailBox, this);
             this.sendDate = new Date();
-            mailBox.send(this);
+            mailBox.send(this, mailBox);
     }
 
     public void sendEmail(MailBox mailBox, List <String> receivers ) throws ContentException{
@@ -58,7 +58,7 @@ public class CreatedEmail extends Email {
 
         EmailSender.sendEmail(mailBox, this);
         this.sendDate = new Date();
-        mailBox.send(this);
+        mailBox.send(this, mailBox);
     }
 
     @Override
