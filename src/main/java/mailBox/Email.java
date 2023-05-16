@@ -4,7 +4,7 @@ import Exceptions.ContentException;
 
 import java.util.List;
 
-public abstract class Email {
+public class Email {
     protected Content content;
     protected Boolean favorite = false;
     protected Boolean important = false;
@@ -15,26 +15,36 @@ public abstract class Email {
         this.content.setSubject("Default subject");
     }
 
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public Boolean getImportant() {
+        return important;
+    }
+
     public String getSender(){
         return this.content.getSender();
     }
 
     public void updateMessage(String message){};
 
-    public void addToFavorite() {
-        this.favorite = true;
+    public void addToFavorite(MailBox mailBox) {
+        this.favorite = !this.favorite;
+        if (this.favorite){
+            mailBox.getFavorites().add(this);
+        } else {
+            mailBox.getFavorites().remove(this);
+        }
     }
 
-    public void removeFromFavorites() {
-        this.favorite = false;
-    }
-
-    public void unmarkAsImportant() {
-        this.important = false;
-    }
-
-    public void markAsImportant() {
-        this.important = true;
+    public void markAsImportant(MailBox mailBox) {
+        this.important = !this.important;
+        if (this.important){
+            mailBox.getImportant().add(this);
+        } else {
+            mailBox.getImportant().remove(this);
+        }
     }
 
     public void showReceivers() {

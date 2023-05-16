@@ -12,6 +12,9 @@ public class MailBox {
     private List<Email> inbox;
     private List<Email> drafts;
     private List<Email> sentEmails;
+    private List<Email> favorites;
+    private List<Email> important;
+
 
     public MailBox(String mailAddress, String password) {
         this.mailAddress = mailAddress;
@@ -19,6 +22,8 @@ public class MailBox {
         this.inbox = new ArrayList<>();
         this.drafts = new ArrayList<>();
         this.sentEmails = new ArrayList<>();
+        this.favorites = new ArrayList<>();
+        this.important = new ArrayList<>();
     }
 
     // getters
@@ -83,5 +88,13 @@ public class MailBox {
         for (Email email : sentEmails) {
             email.showEmail();
         }
+    }
+
+    public List<Email> getFavorites() {
+        return favorites;
+    }
+
+    public List<Email> getImportant() {
+        return important;
     }
 }

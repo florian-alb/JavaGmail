@@ -13,12 +13,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public interface EmailSender {
+public class EmailSender {
 
     public static void sendEmail(MailBox mailBox, CreatedEmail email) throws ContentException {
         // Connection properties
         Properties properties = new Properties();
-        properties.put("mail.smtp.host", "smtp.gmail.com"); // SMTP hast, can be changed to another provider
+        properties.put("mail.smtp.host", "smtp.gmail.com"); // SMTP host, can be changed to another provider
         properties.put("mail.smtp.port", "587"); // SMTP port
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");

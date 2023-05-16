@@ -3,16 +3,16 @@ package mailBox;
 import java.util.Date;
 import java.util.List;
 
-public class ReceivedEmail extends Email{
+public class ReceivedEmail extends Email {
     Boolean isRead = false;
     Date receviedDate;
 
-    public ReceivedEmail(Content content, Date receviedDate){
+    public ReceivedEmail(Content content, Date receviedDate) {
         this.receviedDate = receviedDate;
         this.content = content;
     }
 
-    public ReceivedEmail(List<String> receivers,String sender, String subject, String message, Date receviedDate){
+    public ReceivedEmail(List<String> receivers, String sender, String subject, String message, Date receviedDate) {
         this.receviedDate = receviedDate;
         this.content.setSubject(subject);
         this.content.setMessage(message);
@@ -21,12 +21,12 @@ public class ReceivedEmail extends Email{
     }
 
     @Override
-    public void addToInbox(MailBox mailBox){
+    public void addToInbox(MailBox mailBox) {
         mailBox.getInbox().add(this);
     }
 
     @Override
-    public void showEmail(){
+    public void showEmail() {
         this.isRead = true;
         System.out.println("Sender: " + this.content.getSender());
         System.out.print("Receivers: ");
@@ -38,11 +38,14 @@ public class ReceivedEmail extends Email{
         );
     }
 
-    public String quickShow(){
+    @Override
+    public String quickShow() {
         return ("\tSender: " + this.content.getSender() + "\n" +
                 "\tObject: " + this.content.getSubject() + "\n" +
                 "\tDate: " + this.receviedDate + "\n" +
-                "\tIs Read: " + this.isRead + "\n"
+                "\tIs Read: " + this.isRead + "\n" +
+                "\tFavorite: " + this.getFavorite() + "\n" +
+                "\tImportant: " + this.getImportant() + "\n"
         );
     }
 

@@ -61,4 +61,14 @@ public class CreatedEmail extends Email {
         mailBox.send(this);
     }
 
+    @Override
+    public String quickShow(){
+        return ("\tSender: " + this.content.getSender() + "\n" +
+                "\tObject: " + this.content.getSubject() + "\n" +
+                "\tSend Date: " + this.sendDate + "\n" +
+                "\tFavorite: " + this.getFavorite() + "\n" +
+                "\tImportant: " + this.getImportant() + "\n"
+        );
+    }
+
 }

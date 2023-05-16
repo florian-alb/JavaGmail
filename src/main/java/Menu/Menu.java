@@ -16,6 +16,9 @@ public class Menu {
         System.out.println("1. Show Inbox");
         System.out.println("2. Show Drafts");
         System.out.println("3. Send a New Email");
+        System.out.println("4 Show sent Emails");
+        System.out.println("5 Show Favorites Emails");
+        System.out.println("6 Show Important Emails");
         System.out.println("0. Exit");
     }
 
@@ -23,9 +26,12 @@ public class Menu {
         displayMenu();
         int choice = readInteger(new Scanner(System.in));
         switch (choice) {
-            case 1 -> showInbox(mailBox);
+            case 1 -> showEmailList(mailBox, mailBox.getInbox(), "Inbox");
             case 2 -> showDrafts(mailBox);
             case 3 -> mailBox.createEmail();
+            case 4 -> showEmailList(mailBox, mailBox.getSentEmails(), "Sent Emails");
+            case 5 -> showEmailList(mailBox, mailBox.getFavorites(), "Favorites");
+            case 6 -> showEmailList(mailBox, mailBox.getImportant(), "Important Emails");
             case 0 -> {
                 throw new ExitException("Exiting Program");
             }
@@ -56,63 +62,77 @@ public class Menu {
 
     private static void showDrafts(MailBox mailBox) {
         if (mailBox.getDrafts().isEmpty()) {
-            System.out.println("No drafts found.");
+            System.out.println("\nNo drafts found.\n");
         } else {
             System.out.println("----- Drafts -----");
             for (int i = 0; i < mailBox.getDrafts().size(); i++) {
-                System.out.println((i + 1) + ". " + mailBox.getDrafts().get(i));
+                System.out.println((i + 1) + ". " + mailBox.getDrafts().get(i).quickShow());
             }
             System.out.println("-------------------");
-            System.out.print("Enter the index of the draft to edit or send or type '-1' to exit: ");
-            int index = readInteger(new Scanner(System.in));
-            if (index >= 1 && index <= mailBox.getDrafts().size()) {
-                Email email = mailBox.getDrafts().get(index - 1);
-                editEmail(email, mailBox);
-            } else if (index == -1) {
-                return;
-            } else {
-                System.out.println("Invalid index.");
-            }
+            int index;
+            do {
+                System.out.print("Enter the index of the draft to edit or send or type '0' to exit: ");
+                index = readInteger(new Scanner(System.in));
+                if (index >= 1 && index <= mailBox.getDrafts().size()) {
+                    Email email = mailBox.getDrafts().get(index - 1);
+                    editEmail(email, mailBox);
+                } else if (index != 0) {
+                    System.out.println("Invalid index.");
+                } else if (index == 0) {
+                    System.out.println("Exiting...");
+                }
+            } while (index != 0);
         }
     }
 
-    private static void showInbox(MailBox mailBox) {
-        if (mailBox.getInbox().isEmpty()) {
-            System.out.println("No Emails found.");
+    private static void showEmailList(MailBox mailBox, List<Email> emailList, String listType) {
+        if (emailList.isEmpty()) {
+            System.out.println("\nNo emails found.\n");
         } else {
-            System.out.println("----- Inbox -----");
-            for (int i = 0; i < mailBox.getInbox().size(); i++) {
-                System.out.println((i + 1) + ". " + mailBox.getInbox().get(i).quickShow());
-            }
-            System.out.println("-------------------");
-            System.out.print("Enter the index of the Email to see its content '-1' to exit: ");
-            int index = readInteger(new Scanner(System.in));
-            if (index >= 1 && index <= mailBox.getInbox().size()) {
-                Email email = mailBox.getInbox().get(index - 1);
-                email.showEmail();
-                replyOrExit(email, mailBox);
-
-            } else if (index == -1) {
-                return;
-            } else {
-                System.out.println("Invalid index.");
-            }
+            int index;
+            do {
+                System.out.println("----- " + listType + " -----");
+                for (int i = 0; i < emailList.size(); i++) {
+                    System.out.println((i + 1) + ". " + emailList.get(i).quickShow());
+                }
+                System.out.println("-------------------");
+                System.out.print("\nEnter the index of the Email to see its content '0' to exit: ");
+                index = readInteger(new Scanner(System.in));
+                if (index >= 1 && index <= emailList.size()) {
+                    Email email = emailList.get(index - 1);
+                    email.showEmail();
+                    emailActions(email, mailBox);
+                } else if (index != 0) {
+                    System.out.println("Invalid index.");
+                }
+            } while ((index != 0));
         }
     }
 
-    static void replyOrExit(Email email, MailBox mailBox){
-        System.out.print("Type 1 to reply to this mail and 2 to exit: ");
-        int choice = readInteger(new Scanner(System.in));
-        switch (choice){
-            case 1 -> mailBox.createEmail(email.getSender());
-            case 2 -> System.out.println("Exiting...");
-            default -> System.out.println("Invalid input");
-        }
+    static void emailActions(Email email, MailBox mailBox) {
+        int choice;
+        do {
+            System.out.println("""
+                    Type :\s
+                    1 - to reply to this mail\s
+                    2 - to add/remove this email to favorites\s
+                    3 - to mark/unmark this email as important\s
+                    4 - to exit:\s""");
+
+            choice = readInteger(new Scanner(System.in));
+            switch (choice) {
+                case 1 -> mailBox.createEmail(email.getSender());
+                case 2 -> email.addToFavorite(mailBox);
+                case 3 -> email.markAsImportant(mailBox);
+                case 4 -> System.out.println("Exiting...");
+                default -> System.out.println("Invalid input");
+            }
+        } while (choice != 4);
     }
 
     public static void editEmail(Email email, MailBox mailbox) {
         boolean exit = false;
-        while (!exit) {
+        do {
             System.out.println("\n----- Edit Email -----");
             System.out.println("1. Edit Subject");
             System.out.println("2. Edit Content");
@@ -154,11 +174,14 @@ public class Menu {
                 }
                 case 0 -> {
                     System.out.println("Draft Saved");
-                    mailbox.saveToDrafts(email);
+
+                    if (!mailbox.getDrafts().contains(email)) {
+                        mailbox.saveToDrafts(email);
+                    }
                     exit = true;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
             }
-        }
+        } while (!exit);
     }
 }
