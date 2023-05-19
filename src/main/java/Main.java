@@ -64,6 +64,10 @@ public class Main {
 
         boolean exit = false;
 
+        String valeurVariable = System.getenv("NOM_VARIABLE");
+        System.out.println("La valeur de MY_VARIABLE est : " + valeurVariable);
+
+
         do {
             try {
                 Menu.menu(mailbox);
