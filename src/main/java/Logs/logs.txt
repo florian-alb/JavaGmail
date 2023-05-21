@@ -79,3 +79,11 @@
 [2023-05-21 19:34:35] Exceptions.ExitException: Exiting Program
 	at Menu.Menu.menu(Menu.java:47)
 	at Main.main(Main.java:70)
+[2023-05-21 22:00:18] Add to favorite - mailBox.ReceivedEmail@1218025c - mailBox.MailBox@816f27d
+[2023-05-21 22:00:18] Marked as important - mailBox.ReceivedEmail@1218025c - mailBox.MailBox@816f27d
+[2023-05-21 22:00:32] New email created - mailBox.CreatedEmail@312b1dae - mailBox.MailBox@816f27d
+[2023-05-21 22:00:47] Receivers updated - mailBox.CreatedEmail@312b1dae - mailBox.MailBox@816f27d
+[2023-05-21 22:00:53] Email Sent - mailBox.CreatedEmail@312b1dae - mailBox.MailBox@816f27d
+[2023-05-21 22:01:01] Exceptions.ExitException: Exiting Program
+	at Menu.Menu.menu(Menu.java:47)
+	at Main.main(Main.java:69)
