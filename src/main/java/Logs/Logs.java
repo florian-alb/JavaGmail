@@ -13,6 +13,11 @@ import java.util.Date;
 public class Logs {
     private static final String logFile = new File("").getAbsolutePath() + "/src/main/java/Logs/logs.txt";
 
+    /**
+     * <p>Write logs in a file log</p>
+     *
+     * @param exception the exception trowed by a method
+     */
     public static void writeLog(Exception exception) {
         try {
             PrintWriter printWriter = printLogFormat();
@@ -24,7 +29,14 @@ public class Logs {
         }
     }
 
-    public static void writeLog(String message, Email email, MailBox mailBox){
+    /**
+     * <p>Write logs in a file log</p>
+     *
+     * @param message the message to write
+     * @param email   the email that has been acted upon
+     * @param mailBox the current mailbox
+     */
+    public static void writeLog(String message, Email email, MailBox mailBox) {
         try {
 
             PrintWriter printWriter = printLogFormat();
@@ -36,6 +48,12 @@ public class Logs {
         }
     }
 
+    /**
+     * <p>Get the log txt file and declare a printWriter</p>
+     *
+     * @return an instance of printWriter
+     * @throws IOException if the file do not exist
+     */
     private static PrintWriter printLogFormat() throws IOException {
         File fileOfLog = new File(logFile);
 

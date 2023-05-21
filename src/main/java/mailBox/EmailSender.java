@@ -15,6 +15,13 @@ import java.util.Properties;
 
 public class EmailSender {
 
+    /**
+     * <p>Send an email to the receivers email mailboxes</p>
+     *
+     * @param mailBox and instance of mailbox.
+     * @param email   the email to send
+     * @throws ContentException an error if a receiver email address is not correct
+     */
     public static void sendEmail(MailBox mailBox, CreatedEmail email) throws ContentException {
         // Connection properties
         Properties properties = new Properties();
@@ -41,7 +48,7 @@ public class EmailSender {
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
 
                 // check if the receiver has a valid email
-                if (!Utils.checkEmail(receiver)){
+                if (!Utils.checkEmail(receiver)) {
                     throw new ContentException("Email not sent: Invalid receiver email");
                 }
 

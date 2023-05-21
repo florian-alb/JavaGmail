@@ -1,7 +1,7 @@
 package Exceptions;
 
-public class ContentException extends Exception{
-    public ContentException(String message){
+public class ContentException extends Exception {
+    public ContentException(String message) {
         super(message);
     }
 }

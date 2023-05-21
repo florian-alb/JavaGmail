@@ -1,8 +1,6 @@
-import Exceptions.ContentException;
 import Exceptions.ExitException;
 import Logs.Logs;
 import Menu.Menu;
-import mailBox.CreatedEmail;
 import mailBox.Email;
 import mailBox.MailBox;
 import mailBox.ReceivedEmail;
@@ -12,7 +10,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        MailBox mailbox = new MailBox("florianalvora@gmail.com", "wfiwfrtiyocuzogq");
+        final String emailPassword = System.getenv("EMAIL_PASSWORD");
+
+        MailBox mailBox = new MailBox("florianalvora@gmail.com", emailPassword);
 
         Email email1 = new ReceivedEmail(
                 List.of("florianalvora@gmail.com"),
@@ -54,30 +54,25 @@ public class Main {
                 new Date()
         );
 
-        email1.addToFavorite(mailbox);
-        email1.markAsImportant(mailbox);
-        email1.addToInbox(mailbox);
-        email2.addToInbox(mailbox);
-        email3.addToInbox(mailbox);
-        email4.addToInbox(mailbox);
-        email5.addToInbox(mailbox);
+        email1.addToFavorite(mailBox);
+        email1.markAsImportant(mailBox);
+        email1.addToInbox(mailBox);
+        email2.addToInbox(mailBox);
+        email3.addToInbox(mailBox);
+        email4.addToInbox(mailBox);
+        email5.addToInbox(mailBox);
 
         boolean exit = false;
-
-        String v = System.getenv("EMAIL_PASSWORD");
-        System.out.println(v);
 
 
         do {
             try {
-                Menu.menu(mailbox);
+                Menu.menu(mailBox);
             } catch (ExitException e) {
                 exit = true;
                 e.printStackTrace();
                 Logs.writeLog(e);
             }
-        } while (!exit) ;
-
-        // TODO : Mails reçus
+        } while (!exit);
     }
 }

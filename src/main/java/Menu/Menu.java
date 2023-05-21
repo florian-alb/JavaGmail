@@ -3,6 +3,7 @@ package Menu;
 import Exceptions.ContentException;
 import Exceptions.ExitException;
 import Logs.Logs;
+import Utils.Utils;
 import mailBox.Email;
 import mailBox.MailBox;
 
@@ -11,6 +12,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
+
+    /**
+     * <p>Display the main menu in the terminal</p>
+     */
     public static void displayMenu() {
         System.out.println("----- Java Gmail -----");
         System.out.println("1. Show Inbox");
@@ -22,6 +27,12 @@ public class Menu {
         System.out.println("0. Exit");
     }
 
+    /**
+     * <p>Allows the user to navigate through the different menus of the application and interact with the program</p>
+     *
+     * @param mailBox the current mailBox
+     * @throws ExitException if we exit the program.
+     */
     public static void menu(MailBox mailBox) throws ExitException {
         displayMenu();
         int choice = readInteger(new Scanner(System.in));
@@ -39,6 +50,12 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Read an user int input choice.</p>
+     *
+     * @param scanner an instance of Scanner
+     * @return the choice of the user ( an int )
+     */
     private static int readInteger(Scanner scanner) {
         try {
             System.out.print("Enter your choice: ");
@@ -50,6 +67,13 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Read an user string input choice.</p>
+     *
+     * @param scanner an instance of Scanner
+     * @param prompt  the text to display.
+     * @return the input string of the user
+     */
     private static String readString(Scanner scanner, String prompt) {
         System.out.print(prompt);
         String input = scanner.nextLine();
@@ -60,17 +84,22 @@ public class Menu {
         return input;
     }
 
+    /**
+     * <p>Show the mailBox drafts and allow the user to do changes on a selected draft. <br> This method loop while the user do not exit this menu.</p>
+     *
+     * @param mailBox the current mailBox
+     */
     private static void showDrafts(MailBox mailBox) {
         if (mailBox.getDrafts().isEmpty()) {
             System.out.println("\nNo drafts found.\n");
         } else {
             int index;
             do {
-            System.out.println("----- Drafts -----");
-            for (int i = 0; i < mailBox.getDrafts().size(); i++) {
-                System.out.println((i + 1) + ". " + mailBox.getDrafts().get(i).quickShow());
-            }
-            System.out.println("-------------------");
+                System.out.println("----- Drafts -----");
+                for (int i = 0; i < mailBox.getDrafts().size(); i++) {
+                    System.out.println((i + 1) + ". " + mailBox.getDrafts().get(i).quickShow());
+                }
+                System.out.println("-------------------");
                 System.out.print("Enter the index of the draft to edit or send or type '0' to exit: ");
                 index = readInteger(new Scanner(System.in));
                 if (index >= 1 && index <= mailBox.getDrafts().size()) {
@@ -83,6 +112,13 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Show different list of Email and allow the user to do changes on a selected Email. <br> This method loop while the user do not exit this menu.</p>
+     *
+     * @param mailBox   the current mailBox
+     * @param emailList a list of email
+     * @param listType  the type of email to display
+     */
     private static void showEmailList(MailBox mailBox, List<Email> emailList, String listType) {
         if (emailList.isEmpty()) {
             System.out.println("\nNo emails found.\n");
@@ -107,6 +143,12 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Show a menu of actions to do with a received email.<br> This method loop while the user do not exit this menu</p>
+     *
+     * @param mailBox the current mailBox
+     * @param email   the email we want to do actions with
+     */
     static void emailActions(Email email, MailBox mailBox) {
         int choice;
         do {
@@ -119,7 +161,7 @@ public class Menu {
 
             choice = readInteger(new Scanner(System.in));
             switch (choice) {
-                case 1 -> mailBox.createEmail(email.getSender(), mailBox);
+                case 1 -> mailBox.createEmail(email.getSender());
                 case 2 -> email.addToFavorite(mailBox);
                 case 3 -> email.markAsImportant(mailBox);
                 case 4 -> System.out.println("Exiting...");
@@ -128,7 +170,13 @@ public class Menu {
         } while (choice != 4);
     }
 
-    public static void editEmail(Email email, MailBox mailbox) {
+    /**
+     * <p>Show a menu and allow the user to modify or/and send an email.<br> This method loop while the user do not exit this menu</p>
+     *
+     * @param mailBox the current mailBox
+     * @param email   the email we want to do actions with
+     */
+    public static void editEmail(Email email, MailBox mailBox) {
         boolean exit = false;
         do {
             System.out.println("\n----- Edit Email -----");
@@ -144,7 +192,7 @@ public class Menu {
 
                     // Update the email's object
                     email.updateSubject(newSubject);
-                    Logs.writeLog("Subject updated", email, mailbox);
+                    Logs.writeLog("Subject updated", email, mailBox);
                     System.out.println("Subject updated: " + newSubject);
                 }
                 case 2 -> {
@@ -152,7 +200,7 @@ public class Menu {
 
                     // Update the email's content
                     email.updateMessage(newContent);
-                    Logs.writeLog("Content updated", email, mailbox);
+                    Logs.writeLog("Content updated", email, mailBox);
                     System.out.println("Content updated: " + newContent);
                 }
                 case 3 -> {
@@ -161,12 +209,12 @@ public class Menu {
 
                     // Update the email's receivers
                     email.updateReceivers(receivers);
-                    Logs.writeLog("Receivers updated",email, mailbox);
+                    Logs.writeLog("Receivers updated", email, mailBox);
                     System.out.println("Receivers updated: " + newReceivers);
                 }
                 case 4 -> {
                     try {
-                        email.sendEmail(mailbox);
+                        email.sendEmail(mailBox);
                     } catch (ContentException e) {
                         e.printStackTrace();
                         Logs.writeLog(e);
@@ -175,10 +223,10 @@ public class Menu {
                 }
                 case 0 -> {
                     System.out.println("Draft Saved");
-                    Logs.writeLog("Draft Saved", email, mailbox);
+                    Logs.writeLog("Draft Saved", email, mailBox);
 
-                    if (!mailbox.getDrafts().contains(email)) {
-                        mailbox.saveToDrafts(email);
+                    if (!mailBox.getDrafts().contains(email)) {
+                        mailBox.saveToDrafts(email);
                     }
                     exit = true;
                 }
