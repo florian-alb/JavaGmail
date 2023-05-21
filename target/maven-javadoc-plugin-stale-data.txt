@@ -1,0 +1,62 @@
+@options
+@packages
+@argfile
+-classpath
+'/Users/flo/.m2/repository/javax/mail/javax.mail-api/1.6.2/javax.mail-api-1.6.2.jar:/Users/flo/.m2/repository/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2.jar:/Users/flo/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'/Users/flo/Desktop/ynov/java/javaGmail/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'javaGmail 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'javaGmail 1.0-SNAPSHOT API'
+mailBox
+Utils
+Exceptions
+Logs
+Menu
+'/Users/flo/Desktop/ynov/java/javaGmail/src/main/java/Main.java'
+/Users/flo/.m2/repository/javax/mail/javax.mail-api/1.6.2/javax.mail-api-1.6.2.jar = 1683808764851
+/Users/flo/.m2/repository/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2.jar = 1683808764930
+/Users/flo/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar = 1683808764860
+/Users/flo/Desktop/ynov/java/javaGmail/src/main/java/Main.java = 1684686522248
+/Users/flo/Desktop/ynov/java/javaGmail/src/main/java = 1684686522248
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/tag-search-index.js = 1684690823407
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/overview-tree.html = 1684690823399
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/module-search-index.js = 1684690823406
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/index.html = 1684690823400
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/package-search-index.js = 1684690823407
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/package-use.html = 1684690823395
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/serialized-form.html = 1684690823379
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/index-all.html = 1684690823412
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/allpackages-index.html = 1684690823406
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/member-search-index.js = 1684690823407
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/copy.svg = 1684690823416
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/script.js = 1684690823415
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/stylesheet.css = 1684690823415
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/search-page.js = 1684690823417
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/overview-summary.html = 1684690823413
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/help-doc.html = 1684690823414
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/package-summary.html = 1684690823367
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/Main.html = 1684690823351
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/package-tree.html = 1684690823368
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/element-list = 1684690823365
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/search.html = 1684690823413
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/allclasses-index.html = 1684690823405
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/type-search-index.js = 1684690823407
+/Users/flo/Desktop/ynov/java/javaGmail/target/site/apidocs/search.js = 1684690823416
