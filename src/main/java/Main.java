@@ -64,7 +64,6 @@ public class Main {
 
         boolean exit = false;
 
-
         do {
             try {
                 Menu.menu(mailBox);
